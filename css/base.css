@@ -1,0 +1,53 @@
+:root {
+  --bg: #1f2430;
+  --fg: #cccac2;
+  --fg2: #cccac2cc;
+  --muted: #707a8c;
+  --line: #707a8c33;
+  --glassA: #171b24cc;
+  --glassB: #1f2430b8;
+  --accent: #ffcc66;
+  --hol: #f28779;
+  --sun: #f28779;
+  --sat: #73d0ff;
+  --func: #5ccfe6;
+  --str: #d5ff80;
+  --today: #ffcc66;
+  --todayInk: #1f2430;
+  --bar: #73d0ff;
+  --bar2: #ffcc66;
+  --blur: 16px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; background: var(--bg); overflow: hidden; }
+
+body {
+  font-family: "Desk", "Yu Gothic UI", "Hiragino Sans",
+    "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Meiryo", system-ui, sans-serif;
+  color: var(--fg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-style: normal;
+  font-synthesis: none;
+  font-variant-numeric: tabular-nums lining-nums;
+  font-feature-settings: "palt" 0, "tnum" 1, "lnum" 1;
+  letter-spacing: .02em;
+  line-height: 1.45;
+}
+
+em, i, cite, dfn, var, address {
+  font-style: normal;
+  font-weight: inherit;
+}
+
+.num, .digit, .world b, .kv dd, .row .v, .mgrid .d {
+  font-variant-numeric: tabular-nums lining-nums;
+  font-feature-settings: "tnum" 1, "lnum" 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blob { animation: none !important; }
+  .sky i, .sunglow { transition-duration: .6s; }
+  .digit { animation: none !important; }
+}

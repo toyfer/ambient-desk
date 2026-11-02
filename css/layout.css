@@ -1,0 +1,68 @@
+:root {
+  --pad: 18px;
+  --taskbar: 56px;
+}
+
+.hud {
+  position: fixed;
+  inset: 0 0 calc(var(--taskbar) + env(safe-area-inset-bottom, 0px)) 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.glass {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, var(--glassA), var(--glassB) 52%);
+  -webkit-backdrop-filter: blur(var(--blur)) saturate(140%);
+  backdrop-filter: blur(var(--blur)) saturate(140%);
+  box-shadow: 0 18px 48px rgba(0,0,0,.26), inset 0 1px 0 color-mix(in srgb, var(--fg) 12%, transparent);
+  padding: 14px 16px;
+  min-width: 0;
+}
+body.no-glass .glass {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  background: var(--glassB);
+}
+
+.tl {
+  top: var(--pad);
+  left: var(--pad);
+  width: min(400px, 34vw);
+}
+.tr {
+  top: var(--pad);
+  right: var(--pad);
+  width: min(340px, 30vw);
+  max-height: calc(100% - var(--pad) * 2 - 196px);
+}
+.tr-inner {
+  max-height: inherit;
+  overflow: hidden;
+}
+.bl {
+  left: var(--pad);
+  bottom: var(--pad);
+  width: min(920px, calc(100% - var(--pad) * 2 - 236px));
+}
+.br {
+  right: var(--pad);
+  bottom: var(--pad);
+  width: min(218px, 19vw);
+}
+
+@media (min-width: 2200px) {
+  .tl { width: min(520px, 28vw); }
+  .tr { width: min(420px, 24vw); max-height: calc(100% - var(--pad) * 2 - 240px); }
+  .bl { width: min(1180px, calc(100% - var(--pad) * 2 - 280px)); }
+  .br { width: min(260px, 16vw); }
+}
+
+@media (max-width: 1100px) {
+  .hud { display: flex; flex-direction: column; gap: 10px; padding: 12px; }
+  .glass { position: relative; top: auto; right: auto; bottom: auto; left: auto; width: 100%; max-height: none; }
+  .tr { max-height: 42vh; }
+}

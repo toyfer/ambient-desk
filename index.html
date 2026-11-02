@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Ambient Desk — 時間で色が変わるデスクトップ背景</title>
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/sky.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/panels.css">
+<link rel="stylesheet" href="css/calendar.css">
+</head>
+<body>
+
+<div class="sky" id="sky"></div>
+<div class="sunglow" id="sunglow"></div>
+<div class="blob b1"></div>
+<div class="blob b2"></div>
+<div class="blob b3"></div>
+<div class="vignette"></div>
+<div class="grain"></div>
+
+<main class="hud">
+
+  <section class="glass tl">
+    <p class="greet" id="greet">&nbsp;</p>
+    <div class="clockrow" aria-label="時刻">
+      <span class="pair">
+        <span class="digit" id="h0">-</span><span class="digit" id="h1">-</span>
+      </span>
+      <span class="colon">:</span>
+      <span class="pair">
+        <span class="digit" id="m0">-</span><span class="digit" id="m1">-</span>
+      </span>
+      <span class="colon sec-colon">:</span>
+      <span class="pair sec">
+        <span class="digit" id="s0">-</span><span class="digit" id="s1">-</span>
+      </span>
+    </div>
+    <p class="dateline">
+      <span id="date">----年--月--日</span>
+      <span class="sep">·</span>
+      <span id="wday">-</span>
+      <span class="sep">·</span>
+      <span id="era">令和-年</span>
+    </p>
+    <p class="meta" id="meta">—</p>
+    <div class="rokurow">
+      <span class="roku" id="roku">—</span>
+      <span class="rokuhint" id="rokuhint"></span>
+    </div>
+    <p class="note" id="note"></p>
+  </section>
+
+  <section class="glass tr">
+    <div class="tr-inner">
+      <h2 class="ph">空の情報</h2>
+      <dl class="kv cols">
+        <div><dt>日の出</dt><dd id="sunrise">--:--</dd></div>
+        <div><dt>日の入り</dt><dd id="sunset">--:--</dd></div>
+        <div><dt>南中</dt><dd id="noon">--:--</dd></div>
+        <div><dt>南中高度</dt><dd id="alt">--°</dd></div>
+        <div><dt>昼の長さ</dt><dd id="daylen">--</dd></div>
+        <div><dt>薄明</dt><dd id="twilight">--</dd></div>
+        <div><dt>月齢</dt><dd><span id="moonicon">&#127765;</span> <span id="moonage">0.0</span><em id="moonname">新月</em></dd></div>
+        <div><dt>次の満月</dt><dd id="nextfull">--/--</dd></div>
+        <div><dt>次の新月</dt><dd id="nextnew">--/--</dd></div>
+        <div><dt>節気</dt><dd><span id="termnow">—</span><em id="termfrom"></em></dd></div>
+        <div><dt>次の節気</dt><dd><span id="termnext">—</span><em id="termnextd"></em></dd></div>
+      </dl>
+      <div class="bar-wrap">
+        <div class="bar-label"><span>今日の進捗</span><span id="daypct">0%</span></div>
+        <div class="bar"><i id="daybar"></i></div>
+      </div>
+      <p class="until" id="untilset">—</p>
+      <div id="worldwrap">
+        <h2 class="ph">世界時計</h2>
+        <ul class="world" id="world"></ul>
+      </div>
+      <h2 class="ph">端末</h2>
+      <dl class="kv cols compact" id="syskv">
+        <div id="onlinerow"><dt>接続</dt><dd id="online">—</dd></div>
+        <div id="netrow"><dt>回線</dt><dd id="net">—</dd></div>
+        <div id="battrow"><dt>バッテリー</dt><dd id="batt">—</dd></div>
+        <div id="memrow"><dt>メモリ</dt><dd id="mem">—</dd></div>
+        <div id="hwrow"><dt>CPU</dt><dd id="hw">—</dd></div>
+        <div id="heaprow"><dt>JS ヒープ</dt><dd id="heap">—</dd></div>
+        <div id="scrrow"><dt>画面</dt><dd id="scr">—</dd></div>
+        <div id="tzrow"><dt>タイムゾーン</dt><dd id="tz">—</dd></div>
+        <div id="langrow"><dt>言語</dt><dd id="lang">—</dd></div>
+        <div id="visrow"><dt>表示</dt><dd id="vis">—</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="glass bl">
+    <div class="cal" id="cal"></div>
+  </section>
+
+  <section class="glass br">
+    <div class="agenda">
+      <div class="row">
+        <div class="k">次の祝日</div>
+        <div class="v" id="nextName">—</div>
+        <div class="k" id="nextDate"></div>
+      </div>
+      <div class="row">
+        <div class="k">連休</div>
+        <div class="v" id="lwspan">—</div>
+      </div>
+      <div class="row">
+        <div class="k">節句</div>
+        <div class="v" id="festspan">—</div>
+      </div>
+    </div>
+    <div class="k" style="margin-bottom:.28em">今月</div>
+    <ul class="hlist" id="hlist"></ul>
+    <div class="bar-wrap">
+      <div class="bar-label"><span>今年の進捗</span><span id="yearpct">0%</span></div>
+      <div class="bar"><i id="yearbar"></i></div>
+    </div>
+    <p class="foot" id="remain">—</p>
+  </section>
+
+</main>
+
+<script src="js/config.js"></script>
+<script src="js/util.js"></script>
+<script src="js/holidays.js"></script>
+<script src="js/almanac.js"></script>
+<script src="js/astro.js"></script>
+<script src="js/calendar.js"></script>
+<script src="js/theme.js"></script>
+<script src="js/sky.js"></script>
+<script src="js/clock.js"></script>
+<script src="js/battery.js"></script>
+<script src="js/sysinfo.js"></script>
+<script src="js/panels.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

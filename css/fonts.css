@@ -1,0 +1,21 @@
+@font-face {
+  font-family: "Desk";
+  src: url("../fonts/desk-display.woff2") format("woff2");
+  font-weight: 100 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Desk";
+  src: url("../fonts/desk-jp.woff2") format("woff2");
+  font-weight: 400 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Desk";
+  src: url("../fonts/desk-jp-bold.woff2") format("woff2");
+  font-weight: 600 700;
+  font-style: normal;
+  font-display: swap;
+}
